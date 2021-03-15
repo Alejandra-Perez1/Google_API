@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Google Books Search</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://unpkg.com/vue@next"></script>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <div class="container d-flex h-100 ">
+        <div class="col my-auto mx-auto text-center">
+            <br>
+            <h2> Search for a book </h2>
+        </div> <br>
+    </div>
+    <div id="app">
+        <form class="col-md-8 col-lg-6 my-auto mx-auto" @submit.prevent="searchGoogleBooks">
+            <div class="input-group">
+                <input type="text" id="txtSearch" name="txtSearch" class="form-control" placeholder="Book title or keyword"
+                    v-model="keyword">
+                <button type="submit" class="btn btn-primary">Search</button>
+                <button type="reset" class="btn btn-secondary">Reset</button>
+            </div>
+        </form>
+   
+    <div id="mainDiv" class="results text-center">
+        <div class="row col-sm-5" v-if="result != null"><b>20 books out of {{ (result != null)?result.totalItems:''}}
+            results</b>
+        </div>
+        <div class="row">
+            <book-display v-if="result != null" v-for="(book, index) in result.items" :key="book.id"
+                :book="JSON.stringify(book)"></book-display>
+
+        </div>
+    </div>
+
+
+    <div id="pagination" class="invisible">
+        <div class="my-auto mx-auto text-center pageButtons">
+            <button onclick="previousP()" id="previousButton" type="button" class="btn btn-primary invisible"> Previous
+            </button>
+            <button onclick="nextP()" id="nextButton" type="button" class="btn btn-primary"> Next </button>
+        </div>
+    </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <!-- <script src="GoogleBook.js"></script> -->
+
+    <script src="js/main.js"></script>
+    <script src="js/components/bookdisplay.js"></script>
+
+    <script>
+        const mountedApp = app.mount("#app")
+    </script>
+</body>
+
+</html>

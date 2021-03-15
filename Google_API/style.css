@@ -1,0 +1,18 @@
+.hasError {
+    color: red;
+}
+.invisible{
+    display: none;
+}
+
+.pageButtons{
+    margin-top: 100px;
+}
+button{
+    margin-left: 10px;
+}
+.results {
+    margin-top: 50px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
