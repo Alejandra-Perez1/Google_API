@@ -1,6 +1,3 @@
-.hasError {
-    color: red;
-}
 .invisible{
     display: none;
 }
@@ -15,4 +12,22 @@ button{
     margin-top: 50px;
     margin-left: 50px;
     margin-right: 50px;
+}
+
+.hasError {
+    color: red;
+}
+
+.bookImg {
+    margin: auto;
+    width: 128px;
+    height: 200px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+.bookTitle {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
