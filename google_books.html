@@ -12,46 +12,35 @@
 </head>
 
 <body>
-    <div id="app">
-        <form @submit.prevent="newSearch">
-            <fieldset class="border">
-                <legend class="w-auto">Google Books Search</legend>
-                <div class="row form-group">
-                    <label for="txtSearch" class="col-sm-1 col-form-label">
-                        Keyword:
-                    </label>
-                    <div class="col-sm-5 col-lg-4">
-                        <input type="text" id="txtSearch" name="txtSearch" class="form-control"
-                            placeholder="keyword..." v-model="keyword">
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-sm-4">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                        <button type="reset" class="btn btn-secondary">Reset</button>
-                    </div>
-                </div>
-            </fieldset>
+    <div class="container d-flex h-100 ">
+        <div class="col my-auto mx-auto text-center">
+            <br>
+            <h2> Search for a book </h2>
+        </div> <br>
+    </div>
+    <div id="app">
+        <form class="col-md-8 col-lg-6 my-auto mx-auto" @submit.prevent="newSearch">
+            <div class="input-group">
+                <input type="text" id="txtSearch" name="txtSearch" class="form-control" placeholder="Book title or keyword"
+                    v-model="keyword">
+                <button type="submit" class="btn btn-primary">Search</button>
+                <button type="reset" class="btn btn-secondary">Reset</button>
+            </div>
         </form>
         <div>
             <div class="container-fluid" v-if="result != null">
-                <div class="row">Found {{ (result != null) ? totalItems : '0' }} items.</div>
+                <div class="row"><b>Found {{ (result != null) ? totalItems : '0' }} items.</div><br>
                 <div class="row">
-                    <button
-                        v-on:click="decrementPage"
-                        class="btn btn-secondary"
-                        :disabled="pageNumber === 0"
-                    >&larr; Prev</button>
-                    <div>Page {{ pageNumberDisplay }}</div>
-                    <button
-                        v-on:click="incrementPage"
-                        class="btn btn-secondary"
-                    >Next &rarr;</button>
+                    <button v-on:click="decrementPage" class="btn btn-secondary" :disabled="pageNumber === 0">&larr;
+                        Previous</button><br>
+                    <div> Page {{ pageNumberDisplay }}</div>
+                    <button v-on:click="incrementPage" class="btn btn-secondary">Next &rarr;</button>
                 </div>
             </div>
             <div class="row">
-                <book-display v-if="result != null" v-for="(book, index) in result.items" :key="book.id" :book="JSON.stringify(book)"></book-display>
+                <book-display v-if="result != null" v-for="(book, index) in result.items" :key="book.id"
+                    :book="JSON.stringify(book)"></book-display>
             </div>
         </div>
     </div>
